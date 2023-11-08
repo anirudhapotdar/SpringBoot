@@ -97,10 +97,9 @@ public class CalculatorController {
 	public CalculatorResponse getFactorial(@RequestParam double number1) {
 		
 		CalculatorResponse calculatorResponse = new CalculatorResponse(); 
-		double squareRoot = calculatorService.getFactorial(number1);
-		calculatorResponse.setAnswer(Util.getFormattedString(squareRoot));
-		calculatorResponse.setDetails("Factorial of "+ 
-				Util.getFormattedString(number1)+" = " +Util.getFormattedString(squareRoot));
+		double factorial = calculatorService.getFactorial(number1);
+		calculatorResponse.setAnswer(Util.getFormattedString(factorial));
+		calculatorResponse.setDetails( Util.getFormattedString(number1)+"! = " +Util.getFormattedString(factorial));
 		
 		return calculatorResponse;
 	}
