@@ -7,7 +7,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+import javax.swing.DefaultRowSorter;
+
 import org.springframework.stereotype.Service;
+
+import com.example.demo.response.CalculatorResponse;
+import com.example.demo.util.Util;
 
 /**
  * 
@@ -29,10 +34,26 @@ public class CalculatorService {
 	}
 	
 	
-	public double doDivision(double number1, double number2) {
+	public CalculatorResponse doDivision(double number1, double number2) throws ArithmeticException {
 		double division;
-		division = number1 / number2;
-		return division;
+		CalculatorResponse calculatorResponse = new CalculatorResponse();
+		try {
+			if(number2 == 0) {
+				throw new ArithmeticException();
+			} else {
+				division = number1 / number2;
+				calculatorResponse.setAnswer(Util.getFormattedString(division));
+				calculatorResponse.setDetails(Util.getFormattedString(number1)+" / "+ 
+						Util.getFormattedString(number2)+" = " +Util.getFormattedString(division));
+			}
+		} catch(ArithmeticException e) {
+			e.printStackTrace();
+			calculatorResponse.setAnswer("undefined");
+			calculatorResponse.setDetails("number2 should not be zero");
+		}
+		
+		return calculatorResponse;
+		
 	}
 	
 	public double getSquare(double number1) {

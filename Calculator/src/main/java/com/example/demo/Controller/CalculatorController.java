@@ -65,11 +65,7 @@ public class CalculatorController {
 	public CalculatorResponse getDivision(@RequestParam double number1, @RequestParam double number2) {
 		
 		CalculatorResponse calculatorResponse = new CalculatorResponse(); 
-		double division = calculatorService.doDivision(number1, number2);
-		calculatorResponse.setAnswer(Util.getFormattedString(division));
-		calculatorResponse.setDetails(Util.getFormattedString(number1)+" / "+ 
-				Util.getFormattedString(number2)+" = " +Util.getFormattedString(division));
-		
+		calculatorResponse = calculatorService.doDivision(number1, number2);
 		return calculatorResponse;
 	}
 	
